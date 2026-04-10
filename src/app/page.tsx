@@ -1,65 +1,107 @@
 import Image from "next/image";
+import Link from "next/link";
+import { GetStartedSection } from "./components/GetStartedSection";
+import { HomeHero } from "./components/HomeHero";
+import { MenuGalleryRow } from "./components/MenuGalleryRow";
+
+const promoCards = [
+  {
+    href: "/menu",
+    title: "Menu",
+    imageSrc: `/images/${encodeURIComponent("mask 1.png")}`,
+    alt: "Chef 242 menu",
+  },
+  {
+    href: "/about",
+    title: "About us",
+    imageSrc: `/images/${encodeURIComponent("Mask group.png")}`,
+    alt: "About Chef 242",
+  },
+] as const;
+
+const clientLogos: Array<{
+  file: string;
+  alt: string;
+  imageClassName?: string;
+}> = [
+  { file: "Frame 93.png", alt: "Bahamas Machine Rentals" },
+  { file: "Frame 94.png", alt: "Bahamas Green Construction" },
+  {
+    file: "logo full.svg",
+    alt: "Paradise Breeze",
+    imageClassName: "translate-y-1.5 sm:translate-y-2 md:translate-y-2.5",
+  },
+  { file: "logo 2.png", alt: "Royal Oasis" },
+];
+
+const menuGalleryImages = [
+  { file: "menu 1.png", alt: "Chef 242 menu — seafood rice" },
+  { file: "menu 2.png", alt: "Chef 242 menu — tacos" },
+  { file: "menu 3.png", alt: "Chef 242 menu — Mediterranean bowl" },
+  { file: "menu 4.png", alt: "Chef 242 menu — sliders and fries" },
+] as const;
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="w-full">
+      <HomeHero />
+
+      <section className="border-t border-[#4BA4C5] bg-white px-4 py-6 sm:px-6 sm:py-7">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-3 sm:max-w-3xl md:grid-cols-2 md:gap-4">
+          {promoCards.map((card) => (
+            <Link
+              key={card.href}
+              href={card.href}
+              className="group relative aspect-[4/3] w-full max-w-md justify-self-center overflow-hidden rounded-none md:max-w-none md:justify-self-stretch"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+              <Image
+                src={card.imageSrc}
+                alt={card.alt}
+                fill
+                className="object-cover transition duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 90vw, 360px"
+              />
+              <span className="absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#4BA4C5] px-7 py-2 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-white transition group-hover:brightness-105 sm:px-8 sm:py-2.5 sm:text-xs">
+                {card.title}
+              </span>
+            </Link>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <GetStartedSection />
+
+      <section className="border-t border-[#4BA4C5] bg-white">
+        <div className="px-4 py-12 sm:px-8 sm:py-14 md:px-10 md:py-16">
+          <h2 className="text-center text-lg font-bold uppercase tracking-[0.2em] text-[#1a1a1a] sm:text-xl">
+            Clients
+          </h2>
+          <div className="mx-auto mt-8 flex max-w-5xl flex-wrap items-center justify-center gap-x-6 gap-y-8 sm:mt-10 sm:flex-nowrap sm:gap-x-8 md:gap-x-10 lg:gap-x-12">
+            {clientLogos.map((logo) => (
+              <div
+                key={logo.file}
+                className="relative h-16 min-h-0 w-full min-w-0 max-w-[9.5rem] flex-1 basis-[40%] sm:h-[4.25rem] sm:max-w-none sm:basis-0 md:h-20"
+              >
+                <Image
+                  src={`/images/${encodeURIComponent(logo.file)}`}
+                  alt={logo.alt}
+                  fill
+                  className={`object-contain object-center ${logo.imageClassName ?? ""}`}
+                  sizes="(max-width: 640px) 45vw, 180px"
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </main>
+      </section>
+
+      <section className="grid w-full grid-cols-1 gap-0 overflow-hidden">
+        <div className="grid grid-cols-2 text-center text-xs font-bold uppercase leading-none tracking-wide sm:text-sm">
+          <div className="bg-[#4BA4C5] py-10 text-white sm:py-12">@CHEF242</div>
+          <div className="bg-[#F7DC51] py-10 text-[#1a1a1a] sm:py-12">#CHEF242</div>
+        </div>
+        <MenuGalleryRow items={menuGalleryImages} />
+      </section>
     </div>
   );
 }
