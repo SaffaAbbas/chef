@@ -34,10 +34,14 @@ export default function MenuPage() {
 
       <GetStartedSection />
 
-      <section className="w-full overflow-hidden">
-        <div className="grid grid-cols-2 text-center text-xs font-bold uppercase tracking-wide sm:text-sm">
-          <div className="bg-[#4BA4C5] py-10 text-white sm:py-12">@CHEF242</div>
-          <div className="bg-[#F7DC51] py-10 text-black sm:py-12">#CHEF242</div>
+      <section className="w-full overflow-hidden bg-[#ececec] leading-none">
+        <div className="grid grid-cols-2 gap-0 text-center text-xs font-bold uppercase leading-none tracking-wide sm:text-sm">
+          <div className="flex items-center justify-center bg-[#4BA4C5] py-10 text-white sm:py-12">
+            @CHEF242
+          </div>
+          <div className="flex items-center justify-center bg-[#F7DC51] py-10 text-black sm:py-12">
+            #CHEF242
+          </div>
         </div>
         <MenuGalleryRow items={menuGalleryImages} />
       </section>

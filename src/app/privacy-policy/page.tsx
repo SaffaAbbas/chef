@@ -124,10 +124,14 @@ export default function PrivacyPolicyPage() {
         </div>
       </section>
 
-      <section className="grid w-full grid-cols-1 gap-0 overflow-hidden">
-        <div className="grid grid-cols-2 text-center text-xs font-bold uppercase leading-none tracking-wide sm:text-sm">
-          <div className="bg-[#4BA4C5] py-10 text-white sm:py-12">@CHEF242</div>
-          <div className="bg-[#F7DC51] py-10 text-black sm:py-12">#CHEF242</div>
+      <section className="grid w-full grid-cols-1 grid-rows-[auto_auto] gap-0 overflow-hidden bg-[#ececec] leading-none">
+        <div className="grid grid-cols-2 gap-0 text-center text-xs font-bold uppercase leading-none tracking-wide sm:text-sm">
+          <div className="flex items-center justify-center bg-[#4BA4C5] py-10 text-white sm:py-12">
+            @CHEF242
+          </div>
+          <div className="flex items-center justify-center bg-[#F7DC51] py-10 text-black sm:py-12">
+            #CHEF242
+          </div>
         </div>
         <MenuGalleryRow items={menuGalleryImages} />
       </section>
