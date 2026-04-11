@@ -12,7 +12,7 @@ type MenuGalleryRowProps = {
 /** Four-up strip under @CHEF242 / #CHEF242 — full image visible, sleek landscape tiles. */
 export function MenuGalleryRow({ items }: MenuGalleryRowProps) {
   return (
-    <div className="grid w-full grid-cols-4 gap-0 bg-[#ececec] leading-none [&>*]:min-w-0">
+    <div className="grid w-full grid-cols-2 gap-0 bg-[#ececec] leading-none md:grid-cols-4 [&>*]:min-w-0">
       {items.map((item) => (
         <div
           key={item.file}
@@ -23,7 +23,7 @@ export function MenuGalleryRow({ items }: MenuGalleryRowProps) {
             alt={item.alt}
             fill
             className="object-contain object-center"
-            sizes="25vw"
+            sizes="(max-width: 767px) 50vw, 25vw"
           />
         </div>
       ))}

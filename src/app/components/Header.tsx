@@ -2,11 +2,19 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useId, useState } from "react";
 import { BrandLogo } from "./BrandLogo";
 import { IconFacebookF, IconInstagram } from "./SocialBrandIcons";
 
 const socialClass =
   "flex size-8 items-center justify-center rounded-full bg-[#4AA4C6] text-white transition hover:opacity-90";
+
+const mainNav = [
+  { href: "/", label: "Home" },
+  { href: "/menu", label: "Menu" },
+  { href: "/about", label: "About Us" },
+  { href: "/contact", label: "Contact Us" },
+] as const;
 
 function PhoneFilledIcon({ className }: { className?: string }) {
   return (
@@ -44,12 +52,144 @@ function navLinkClass(pathname: string, href: string) {
   return active ? `${base} font-bold` : `${base} font-normal`;
 }
 
+function mobileNavLinkClass(pathname: string, href: string) {
+  const active =
+    href === "/"
+      ? pathname === "/" || pathname === ""
+      : pathname === href || pathname.startsWith(`${href}/`);
+  const base =
+    "block w-full border-b border-black/10 py-4 text-lg uppercase tracking-wide text-[#1a1a1a] transition hover:bg-black/[0.03] hover:text-[#4BA4C5]";
+  return active ? `${base} font-bold` : `${base} font-normal`;
+}
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <span className="relative block size-5" aria-hidden>
+      <span
+        className={`absolute left-0 top-[5px] block h-0.5 w-5 rounded-full bg-[#1a1a1a] transition-transform duration-200 ${
+          open ? "translate-y-[7px] rotate-45" : ""
+        }`}
+      />
+      <span
+        className={`absolute left-0 top-[11px] block h-0.5 w-5 rounded-full bg-[#1a1a1a] transition-opacity duration-200 ${
+          open ? "opacity-0" : ""
+        }`}
+      />
+      <span
+        className={`absolute left-0 top-[17px] block h-0.5 w-5 rounded-full bg-[#1a1a1a] transition-transform duration-200 ${
+          open ? "-translate-y-[7px] -rotate-45" : ""
+        }`}
+      />
+    </span>
+  );
+}
+
 export default function Header() {
   const pathname = usePathname() ?? "";
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuTitleId = useId();
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [menuOpen]);
 
   return (
-    <header className="w-full bg-white">
-      <div className="flex justify-end gap-2 px-4 py-2 sm:px-8">
+    <header className="relative z-50 w-full bg-white">
+      {/* Below chrome (z-[110]): dim + drawer */}
+      <div
+        className={`fixed inset-0 z-[100] lg:hidden ${
+          menuOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+        aria-hidden={!menuOpen}
+        inert={!menuOpen ? true : undefined}
+      >
+        <button
+          type="button"
+          className={`absolute inset-0 bg-black/45 transition-opacity duration-200 ${
+            menuOpen ? "opacity-100" : "opacity-0"
+          }`}
+          aria-label="Close menu"
+          tabIndex={menuOpen ? 0 : -1}
+          onClick={() => setMenuOpen(false)}
+        />
+        <div
+          id="mobile-menu"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={menuTitleId}
+          className={`absolute inset-y-0 right-0 flex w-[min(100%,20rem)] max-w-full flex-col bg-white shadow-[-8px_0_32px_rgba(0,0,0,0.12)] transition-transform duration-200 ease-out ${
+            menuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          <div className="flex items-center justify-between border-b border-black/10 px-4 py-4">
+            <h2
+              id={menuTitleId}
+              className="text-sm font-bold uppercase tracking-[0.2em] text-[#1a1a1a]"
+            >
+              Menu
+            </h2>
+            <button
+              type="button"
+              className="flex size-11 items-center justify-center rounded-full text-[#1a1a1a] transition hover:bg-black/[0.06]"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+            >
+              <HamburgerIcon open />
+            </button>
+          </div>
+
+          <nav
+            className="flex min-h-0 flex-1 flex-col overflow-y-auto px-4 pb-6 pt-2"
+            aria-label="Main"
+          >
+            {mainNav.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                className={mobileNavLinkClass(pathname, href)}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="border-t border-black/10 p-4">
+            <div className="flex flex-col gap-2">
+              <Link
+                href="/order"
+                className="rounded-full bg-[#4BA4C5] px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
+                onClick={() => setMenuOpen(false)}
+              >
+                Order Now
+              </Link>
+              <Link
+                href="/pay"
+                className="rounded-full bg-[#F7DC51] px-4 py-3 text-center text-[0.65rem] font-semibold uppercase leading-snug tracking-wide text-[#1a1a1a] transition hover:brightness-105"
+                onClick={() => setMenuOpen(false)}
+              >
+                HAVE US AT YOUR JOB SITE
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative z-[110] flex justify-end gap-2 bg-white px-4 py-2 sm:px-8">
         <a
           href="tel:+12425551234"
           className={socialClass}
@@ -86,46 +226,27 @@ export default function Header() {
         </a>
       </div>
 
-      <div className="grid grid-cols-1 items-center gap-6 border-b border-black/5 px-4 py-4 sm:px-8 lg:grid-cols-[1fr_auto_1fr]">
-        <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2 lg:justify-start">
-          <Link
-            href="/"
-            className={navLinkClass(pathname, "/")}
-            aria-current={pathname === "/" ? "page" : undefined}
-          >
-            Home
-          </Link>
-          <Link
-            href="/menu"
-            className={navLinkClass(pathname, "/menu")}
-            aria-current={pathname === "/menu" || pathname.startsWith("/menu/")
-              ? "page"
-              : undefined}
-          >
-            Menu
-          </Link>
-          <Link
-            href="/about"
-            className={navLinkClass(pathname, "/about")}
-            aria-current={
-              pathname === "/about" || pathname.startsWith("/about/")
-                ? "page"
-                : undefined
-            }
-          >
-            About Us
-          </Link>
-          <Link
-            href="/contact"
-            className={navLinkClass(pathname, "/contact")}
-            aria-current={
-              pathname === "/contact" || pathname.startsWith("/contact/")
-                ? "page"
-                : undefined
-            }
-          >
-            Contact Us
-          </Link>
+      {/* Desktop: unchanged three-column bar */}
+      <div className="relative z-[110] hidden grid-cols-1 items-center gap-5 border-b border-black/5 bg-white px-4 py-4 sm:gap-6 sm:px-8 lg:grid lg:grid-cols-[1fr_auto_1fr]">
+        <nav className="flex max-w-full flex-wrap justify-center gap-x-4 gap-y-2 sm:gap-x-6 lg:justify-start">
+          {mainNav.map(({ href, label }) => (
+            <Link
+              key={href}
+              href={href}
+              className={navLinkClass(pathname, href)}
+              aria-current={
+                href === "/"
+                  ? pathname === "/" || pathname === ""
+                    ? "page"
+                    : undefined
+                  : pathname === href || pathname.startsWith(`${href}/`)
+                    ? "page"
+                    : undefined
+              }
+            >
+              {label}
+            </Link>
+          ))}
         </nav>
 
         <BrandLogo
@@ -134,21 +255,41 @@ export default function Header() {
           priority
         />
 
-        <div className="flex flex-wrap justify-center gap-3 lg:justify-self-end">
+        <div className="flex w-full max-w-md flex-col items-stretch gap-2 self-center sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3 lg:justify-self-end">
           <Link
             href="/order"
-            className="rounded-full bg-[#4BA4C5] px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:brightness-105"
+            className="rounded-full bg-[#4BA4C5] px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:brightness-105 sm:px-5"
           >
             Order Now
           </Link>
           <Link
             href="/pay"
-            className="rounded-full bg-[#F7DC51] px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-[#1a1a1a] transition hover:brightness-105"
+            className="rounded-full bg-[#F7DC51] px-4 py-2.5 text-center text-[0.65rem] font-semibold uppercase leading-snug tracking-wide text-[#1a1a1a] transition hover:brightness-105 sm:px-5 sm:text-xs"
           >
             HAVE US AT YOUR JOB SITE
           </Link>
         </div>
       </div>
+
+      {/* Mobile / tablet: logo + menu trigger (above dim layer) */}
+      <div className="relative z-[110] flex items-center justify-center border-b border-black/5 bg-white px-4 py-4 lg:hidden">
+        <BrandLogo
+          className="flex flex-col items-center justify-center gap-0.5"
+          imageClassName="h-auto w-[5.25rem] object-contain sm:w-28"
+        />
+        <button
+          type="button"
+          className="absolute right-4 flex size-11 items-center justify-center rounded-full text-[#1a1a1a] transition hover:bg-black/[0.06] active:bg-black/10"
+          aria-expanded={menuOpen}
+          aria-controls="mobile-menu"
+          aria-haspopup="dialog"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          <HamburgerIcon open={menuOpen} />
+        </button>
+      </div>
+
     </header>
   );
 }

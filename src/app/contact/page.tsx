@@ -110,7 +110,7 @@ export default function ContactPage() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/order"
-            className="inline-flex items-center justify-center rounded-full bg-[#4BA4C5] px-8 py-3.5 text-center text-[18px] font-normal text-white shadow-none transition hover:brightness-105"
+            className="inline-flex max-w-full items-center justify-center rounded-full bg-[#4BA4C5] px-5 py-3 text-center text-base font-normal text-white shadow-none transition hover:brightness-105 sm:px-8 sm:py-3.5 sm:text-[18px]"
           >
             Order now, download the app
           </Link>

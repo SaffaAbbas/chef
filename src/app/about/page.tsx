@@ -61,7 +61,7 @@ export default function AboutPage() {
         </div>
 
         <div className="mt-8 w-full overflow-hidden rounded-none">
-          <div className="relative h-[420px] w-full sm:h-[520px] lg:h-[620px]">
+          <div className="relative h-[clamp(260px,52vw,420px)] w-full sm:h-[520px] lg:h-[620px]">
             <Image
               src="/images/about.png"
               alt="Workers enjoying a meal at the site"

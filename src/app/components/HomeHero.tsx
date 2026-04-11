@@ -66,10 +66,10 @@ export function HomeHero() {
   }, []);
 
   return (
-    <section className="grid min-h-[min(85vh,640px)] grid-cols-1 md:grid-cols-2">
-      <div className="flex flex-col justify-center gap-6 bg-[#F7DC51] px-8 py-14 sm:px-12 lg:px-16">
+    <section className="grid min-h-[min(80vh,560px)] grid-cols-1 sm:min-h-[min(85vh,640px)] md:grid-cols-2">
+      <div className="flex flex-col justify-center gap-5 bg-[#F7DC51] px-4 py-10 sm:gap-6 sm:px-12 sm:py-14 lg:px-16">
         <div
-          className="relative -mt-2 min-h-[14rem] sm:min-h-[15.5rem] lg:min-h-[17rem]"
+          className="relative -mt-2 min-h-[12.5rem] sm:min-h-[15.5rem] lg:min-h-[17rem]"
           aria-live="polite"
           aria-atomic="true"
         >
@@ -77,7 +77,7 @@ export function HomeHero() {
             <h1
               key={i}
               aria-hidden={i !== index}
-              className={`absolute inset-x-0 top-0 max-w-xl text-4xl font-extrabold leading-tight tracking-tight text-[#1a1a1a] transition-opacity duration-500 sm:text-5xl lg:text-[60px] lg:leading-[1.1] ${
+              className={`absolute inset-x-0 top-0 max-w-xl text-[clamp(1.625rem,5.5vw+0.35rem,2.25rem)] font-extrabold leading-[1.15] tracking-tight text-balance text-[#1a1a1a] transition-opacity duration-500 sm:text-5xl sm:leading-tight lg:text-[60px] lg:leading-[1.1] ${
                 i === index
                   ? "z-[1] opacity-100"
                   : "pointer-events-none z-0 opacity-0"
@@ -109,7 +109,7 @@ export function HomeHero() {
           ))}
         </div>
       </div>
-      <div className="relative min-h-[280px] md:min-h-0">
+      <div className="relative min-h-[220px] sm:min-h-[280px] md:min-h-0">
         {slides.map((slide, i) => (
           <Image
             key={slide.src}

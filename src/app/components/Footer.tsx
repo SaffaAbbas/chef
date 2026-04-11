@@ -40,7 +40,7 @@ export default function Footer() {
   return (
     <footer className="w-full">
       <div className="bg-[#F7DC51] px-4 py-12 sm:px-8 sm:py-14">
-        <nav className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-10 gap-y-5 text-[16px] font-semibold uppercase tracking-wide text-black">
+        <nav className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-6 gap-y-4 text-sm font-semibold uppercase tracking-wide text-black sm:gap-x-10 sm:gap-y-5 sm:text-[16px]">
           <Link href="/" className="hover:text-black/80">
             Home
           </Link>
