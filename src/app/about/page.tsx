@@ -15,32 +15,45 @@ const whyChefFeatures = [
   {
     icon: "logo1.png",
     iconAlt: "Local and sustainable sourcing",
-    text: "We use local and sustainable products whenever possible",
+    lines: ["We use local and sustainable", "products whenever", "possible"],
   },
   {
     icon: "icon.png",
     iconAlt: "Rotating menus",
-    text: "We are constantly rotating our menus so your employees do not get tired of the same food",
+    lines: [
+      "We are constantly rotating our",
+      "menus so your employees do not get tired of the same food",
+    ],
   },
   {
     icon: "Frame 27.png",
     iconAlt: "Reliable service",
-    text: "We are reliable and committed, so you can rest assured that we will be there when you need it",
+    lines: [
+      "We are reliable and committed,",
+      "so you can rest assured that we",
+      "will be there when you need it",
+    ],
   },
   {
     icon: "Frame 30.png",
     iconAlt: "Self-sufficient operations",
-    text: "We are entirely self-sufficient with power and water supply",
+    lines: ["We are entirely self-sufficient", "with power and water supply"],
   },
   {
     icon: "Frame 29.png",
     iconAlt: "Biodegradable service ware",
-    text: "We use biodegradable service ware to help reduce the use of single-use plastic",
+    lines: [
+      "We use biodegradable service ware to help reduce the use of single-use plastic",
+    ],
   },
   {
     icon: "Frame 28.png",
     iconAlt: "Detailed billing",
-    text: "We provide construction companies flexible, easy and detailed billing",
+    lines: [
+      "We provide construction",
+      "companies flexible, easy and",
+      "detailed billing",
+    ],
   },
 ] as const;
 
@@ -53,24 +66,23 @@ export default function AboutPage() {
         </h1>
       </section>
 
-      <section className="bg-white py-10">
+      <section className="bg-white pb-0 pt-10">
         <div className="px-4 sm:px-8">
           <p className="text-center text-[18px] font-semibold text-black">
             Feeding a happy and healthy construction force..
           </p>
         </div>
 
-        <div className="mt-8 w-full overflow-hidden rounded-none">
-          <div className="relative h-[clamp(260px,52vw,420px)] w-full sm:h-[520px] lg:h-[620px]">
-            <Image
-              src="/images/about.png"
-              alt="Workers enjoying a meal at the site"
-              fill
-              className="object-cover object-center"
-              sizes="100vw"
-              priority
-            />
-          </div>
+        <div className="mt-8 w-full">
+          <Image
+            src="/images/about.png"
+            alt="Workers enjoying a meal at the site"
+            width={1920}
+            height={1080}
+            className="h-auto w-full object-contain"
+            sizes="100vw"
+            priority
+          />
         </div>
       </section>
 
@@ -116,8 +128,12 @@ export default function AboutPage() {
                   sizes="80px"
                 />
               </div>
-              <p className="mt-3 text-[18px] font-semibold leading-relaxed text-black">
-                {item.text}
+              <p className="mx-auto mt-3 min-h-[calc(1.4em*3)] max-w-[320px] text-[16px] font-semibold leading-[1.4] text-black">
+                {item.lines.map((line, idx) => (
+                  <span key={idx} className="block">
+                    {line}
+                  </span>
+                ))}
               </p>
             </div>
           ))}

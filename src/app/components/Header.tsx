@@ -171,7 +171,7 @@ export default function Header() {
           <div className="border-t border-black/10 p-4">
             <div className="flex flex-col gap-2">
               <Link
-                href="/order"
+                href="/contact#contact-form"
                 className="rounded-full bg-[#4BA4C5] px-4 py-3 text-center text-xs font-semibold uppercase tracking-wide text-white transition hover:brightness-105"
                 onClick={() => setMenuOpen(false)}
               >
@@ -257,7 +257,7 @@ export default function Header() {
 
         <div className="flex w-full max-w-md flex-col items-stretch gap-2 self-center sm:w-auto sm:max-w-none sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3 lg:justify-self-end">
           <Link
-            href="/order"
+            href="/contact#contact-form"
             className="rounded-full bg-[#4BA4C5] px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-wide text-white shadow-sm transition hover:brightness-105 sm:px-5"
           >
             Order Now

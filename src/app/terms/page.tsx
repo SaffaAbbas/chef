@@ -30,6 +30,9 @@ export default function TermsPage() {
 
       <section className="bg-white px-4 py-14 sm:px-8 sm:py-16">
         <div className="mx-auto max-w-4xl text-black">
+          <p className="text-base font-medium leading-relaxed text-black/85">
+            Last Updated: April, 2026
+          </p>
           <P>
             Welcome to Chef 242. By using our website and services, you agree to
             the following Terms &amp; Conditions. Please read them carefully.

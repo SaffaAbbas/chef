@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useRef, useState } from "react";
 import { GetStartedSection } from "../components/GetStartedSection";
 import { MenuGalleryRow } from "../components/MenuGalleryRow";
 
@@ -57,8 +60,36 @@ function MailFilledIcon({ className }: { className?: string }) {
 }
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   return (
     <div className="w-full">
+      {showSuccess ? (
+        <div
+          className="fixed inset-0 z-[200] flex items-center justify-center bg-black/45 px-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Message sent"
+        >
+          <div className="relative w-full max-w-[520px] bg-[#F7DC51] px-6 py-7 text-center text-black shadow-[0_24px_60px_rgba(0,0,0,0.25)] sm:px-10">
+            <button
+              type="button"
+              onClick={() => setShowSuccess(false)}
+              aria-label="Close"
+              className="absolute -right-3 -top-3 flex size-8 items-center justify-center rounded-full bg-[#4BA4C5] text-white shadow-md transition hover:brightness-105"
+            >
+              <span className="text-[18px] leading-none">×</span>
+            </button>
+            <p className="text-[14px] font-normal leading-relaxed sm:text-[15px]">
+              Our team at Chef 242 has received your message.
+              <br />
+              We will contact you shortly.
+            </p>
+          </div>
+        </div>
+      ) : null}
+
       <section className="bg-[#F7DC51] py-10 text-center sm:py-12">
         <h1 className="text-[20px] font-semibold uppercase tracking-[0.25em] text-black">
           Contact Us
@@ -117,7 +148,10 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="bg-[#4AA4C6] px-4 py-14 sm:px-8">
+      <section
+        id="contact-form"
+        className="scroll-mt-28 bg-[#4AA4C6] px-4 py-14 sm:px-8"
+      >
         <div className="mx-auto max-w-4xl">
           <h2 className="text-center text-[20px] font-semibold text-white">
             We would love to hear from you!
@@ -126,7 +160,15 @@ export default function ContactPage() {
             Please contact our team at Chef 242; we will respond promptly.
           </p>
 
-          <form className="mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+          <form
+            ref={formRef}
+            className="mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setShowSuccess(true);
+              formRef.current?.reset();
+            }}
+          >
             <label className="text-left text-[18px] font-normal text-white">
               Name<span className="text-white">*</span>
               <input
@@ -175,6 +217,14 @@ export default function ContactPage() {
                 required
               />
             </label>
+            <div className="flex justify-center sm:col-span-2">
+              <button
+                type="submit"
+                className="mt-2 inline-flex w-full items-center justify-center rounded-full bg-[#F7DC51] px-6 py-3 text-[18px] font-semibold text-black transition hover:brightness-105 sm:w-auto sm:min-w-[180px]"
+              >
+                Send
+              </button>
+            </div>
           </form>
         </div>
       </section>

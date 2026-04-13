@@ -53,7 +53,7 @@ export default function Footer() {
           <Link href="/contact" className="hover:text-black/80">
             Contact Us
           </Link>
-          <Link href="/feedback" className="hover:text-black/80">
+          <Link href="/contact#contact-form" className="hover:text-black/80">
             Feedback
           </Link>
           <Link href="/service" className="hover:text-black/80">

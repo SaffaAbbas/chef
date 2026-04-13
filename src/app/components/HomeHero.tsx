@@ -13,7 +13,7 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    src: "/images/scroll1.png",
+    src: "/images/image 2.png",
     alt: "Fresh Bahamian food for your job site",
     title: (
       <>
@@ -34,7 +34,7 @@ const slides: Slide[] = [
     ),
   },
   {
-    src: "/images/scroll4.png",
+    src: "/images/scroll1.png",
     alt: "Operating successfully Monday through Friday",
     title: (
       <>
@@ -44,7 +44,7 @@ const slides: Slide[] = [
     ),
   },
   {
-    src: "/images/image 2.png",
+    src: "/images/scroll4.png",
     alt: "Easy and detailed billing for construction owners and managers",
     title: (
       <>

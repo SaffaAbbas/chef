@@ -27,6 +27,10 @@ export default function PrivacyPolicyPage() {
       <section className="bg-white px-4 py-14 sm:px-8 sm:py-16">
         <div className="mx-auto max-w-4xl text-black">
           <p className="text-base font-medium leading-relaxed text-black/85">
+            Last Updated: April, 2026
+          </p>
+          <br />
+          <p className="text-base font-medium leading-relaxed text-black/85">
             At Chef 242, your privacy matters. We are committed to protecting
             your personal information and being transparent about how we collect
             and use it.
@@ -65,8 +69,8 @@ export default function PrivacyPolicyPage() {
           <SectionTitle>Data protection</SectionTitle>
           <p className="mt-3 text-base font-medium leading-relaxed text-black/85">
             We take appropriate security measures to protect your personal data
-            from unauthorized access, loss, or misuse. Access to your information
-            is limited to authorized personnel only.
+            from unauthorized access, loss, or misuse. Access to your
+            information is limited to authorized personnel only.
           </p>
 
           <SectionTitle>Sharing of information</SectionTitle>
