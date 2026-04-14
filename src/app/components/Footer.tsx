@@ -53,12 +53,6 @@ export default function Footer() {
           <Link href="/contact" className="hover:text-black/80">
             Contact Us
           </Link>
-          <Link href="/contact#contact-form" className="hover:text-black/80">
-            Feedback
-          </Link>
-          <Link href="/service" className="hover:text-black/80">
-            What is your service
-          </Link>
         </nav>
 
         <div className="mx-auto mt-10 flex max-w-5xl flex-col items-center gap-5 text-base font-medium text-black sm:mt-10 sm:flex-row sm:justify-center sm:gap-16">
