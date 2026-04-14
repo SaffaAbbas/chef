@@ -69,10 +69,10 @@ export default function Footer() {
             href="mailto:info@chef242.com"
             className="flex items-center gap-3 hover:text-black/80"
           >
-            <span>info@chef242.com</span>
             <span className={contactIconClass} aria-hidden>
               <MailFilledIcon className={footerIconSize} />
             </span>
+            <span>info@chef242.com</span>
           </a>
         </div>
 
