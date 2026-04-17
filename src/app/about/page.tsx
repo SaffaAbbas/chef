@@ -69,20 +69,21 @@ export default function AboutPage() {
       <section className="bg-white pb-0 pt-10">
         <div className="px-4 sm:px-8">
           <p className="text-center text-[18px] font-semibold text-black">
-            Feeding a happy and healthy construction force..
+            Feeding a happy and healthy construction force
           </p>
         </div>
 
         <div className="mt-8 w-full">
-          <Image
-            src="/images/about.png"
-            alt="Workers enjoying a meal at the site"
-            width={1920}
-            height={1080}
-            className="h-auto w-full object-contain"
-            sizes="100vw"
-            priority
-          />
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
+            <Image
+              src="/images/about.png"
+              alt="Workers enjoying a meal at the site"
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
+          </div>
         </div>
       </section>
 

@@ -76,11 +76,11 @@ export default function Home() {
           <h2 className="text-center text-base font-bold uppercase tracking-[0.18em] text-[#1a1a1a] sm:text-xl sm:tracking-[0.2em]">
             Clients
           </h2>
-          <div className="mx-auto mt-6 flex max-w-5xl flex-wrap items-center justify-center gap-x-4 gap-y-6 sm:mt-10 sm:flex-nowrap sm:gap-x-8 sm:gap-y-8 md:gap-x-10 lg:gap-x-12">
+          <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 items-center justify-items-center gap-x-12 gap-y-12 sm:mt-10 sm:grid-cols-4 sm:gap-x-16 sm:gap-y-0 md:gap-x-24 lg:gap-x-32">
             {clientLogos.map((logo) => (
               <div
                 key={logo.file}
-                className="relative h-16 min-h-0 w-full min-w-0 max-w-[9.5rem] flex-1 basis-[40%] sm:h-[4.25rem] sm:max-w-none sm:basis-0 md:h-20"
+                className="relative h-16 w-full max-w-[10rem] min-h-0 sm:h-[4.25rem] sm:max-w-none md:h-20"
               >
                 <Image
                   src={`/images/${encodeURIComponent(logo.file)}`}

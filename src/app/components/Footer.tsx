@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandLogo } from "./BrandLogo";
 import { IconFacebookF, IconInstagram, IconWhatsApp } from "./SocialBrandIcons";
 
@@ -37,20 +40,46 @@ function MailFilledIcon({ className }: { className?: string }) {
 }
 
 export default function Footer() {
+  const pathname = usePathname();
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname?.startsWith(href);
+
   return (
     <footer className="w-full">
       <div className="bg-[#F7DC51] px-4 py-12 sm:px-8 sm:py-14">
         <nav className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-6 gap-y-4 text-sm font-semibold uppercase tracking-wide text-black sm:gap-x-10 sm:gap-y-5 sm:text-[16px]">
-          <Link href="/" className="hover:text-black/80">
+          <Link
+            href="/"
+            aria-current={isActive("/") ? "page" : undefined}
+            className={isActive("/") ? "text-black underline underline-offset-4" : "hover:text-black/80"}
+          >
             Home
           </Link>
-          <Link href="/menu" className="hover:text-black/80">
+          <Link
+            href="/menu"
+            aria-current={isActive("/menu") ? "page" : undefined}
+            className={
+              isActive("/menu") ? "text-black underline underline-offset-4" : "hover:text-black/80"
+            }
+          >
             Menu
           </Link>
-          <Link href="/about" className="hover:text-black/80">
+          <Link
+            href="/about"
+            aria-current={isActive("/about") ? "page" : undefined}
+            className={
+              isActive("/about") ? "text-black underline underline-offset-4" : "hover:text-black/80"
+            }
+          >
             About Us
           </Link>
-          <Link href="/contact" className="hover:text-black/80">
+          <Link
+            href="/contact"
+            aria-current={isActive("/contact") ? "page" : undefined}
+            className={
+              isActive("/contact") ? "text-black underline underline-offset-4" : "hover:text-black/80"
+            }
+          >
             Contact Us
           </Link>
         </nav>
@@ -123,20 +152,52 @@ export default function Footer() {
               reserved.
             </p>
             <div className="absolute right-0 hidden gap-8 text-[16px] font-medium text-black sm:flex">
-              <Link href="/privacy-policy" className="hover:text-[#4BA4C5]">
+              <Link
+                href="/privacy-policy"
+                aria-current={isActive("/privacy-policy") ? "page" : undefined}
+                className={
+                  isActive("/privacy-policy")
+                    ? "text-[#4BA4C5] underline underline-offset-4"
+                    : "hover:text-[#4BA4C5]"
+                }
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-[#4BA4C5]">
+              <Link
+                href="/terms"
+                aria-current={isActive("/terms") ? "page" : undefined}
+                className={
+                  isActive("/terms")
+                    ? "text-[#4BA4C5] underline underline-offset-4"
+                    : "hover:text-[#4BA4C5]"
+                }
+              >
                 Terms & Conditions
               </Link>
             </div>
           </div>
 
           <div className="mt-4 flex justify-center gap-8 text-[16px] font-medium text-black sm:hidden">
-            <Link href="/privacy-policy" className="hover:text-[#4BA4C5]">
+            <Link
+              href="/privacy-policy"
+              aria-current={isActive("/privacy-policy") ? "page" : undefined}
+              className={
+                isActive("/privacy-policy")
+                  ? "text-[#4BA4C5] underline underline-offset-4"
+                  : "hover:text-[#4BA4C5]"
+              }
+            >
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-[#4BA4C5]">
+            <Link
+              href="/terms"
+              aria-current={isActive("/terms") ? "page" : undefined}
+              className={
+                isActive("/terms")
+                  ? "text-[#4BA4C5] underline underline-offset-4"
+                  : "hover:text-[#4BA4C5]"
+              }
+            >
               Terms & Conditions
             </Link>
           </div>
