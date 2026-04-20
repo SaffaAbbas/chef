@@ -68,28 +68,7 @@ export default function AboutPage() {
 
       <section className="bg-white pb-0 pt-10">
         <div className="px-4 sm:px-8">
-          <p className="text-center text-[18px] font-semibold text-black">
-            Feeding a happy and healthy construction force
-          </p>
-        </div>
-
-        <div className="mt-8 w-full">
-          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
-            <Image
-              src="/images/about.png"
-              alt="Workers enjoying a meal at the site"
-              fill
-              className="object-cover object-top"
-              sizes="100vw"
-              priority
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#4AA4C6] px-4 py-12 sm:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="mx-auto max-w-4xl space-y-4 text-left text-[18px] font-semibold leading-relaxed text-white">
+          <div className="text-center text-[18px] font-semibold text-black">
             <p>
               We believe food fuels both body and mind, driving better
               performance on every job site. To keep your crew operating at
@@ -108,6 +87,19 @@ export default function AboutPage() {
               make sure your crew enjoys a lunch break that keeps them going.
             </p>
             <p>Order through our app and we&apos;ll handle the rest.</p>
+          </div>
+        </div>
+
+        <div className="mt-8 w-full">
+          <div className="relative w-full aspect-[16/9] sm:aspect-[21/9]">
+            <Image
+              src="/images/about.png"
+              alt="Workers enjoying a meal at the site"
+              fill
+              className="object-cover object-top"
+              sizes="100vw"
+              priority
+            />
           </div>
         </div>
       </section>
